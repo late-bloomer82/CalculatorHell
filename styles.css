@@ -6,18 +6,13 @@ body{
    
   
 }
-#video-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1; /* Place the video behind the content */
-  }
+
 
 h1{
-    margin-bottom: 100px;
-    color: white;
+    margin-bottom: 50px;
+    color:black;
+    font-size: 50px;
+    font-family: Arial, sans-serif;
 }
 
 
@@ -27,14 +22,14 @@ h1{
     height: 683px;
     background-color: black;
     border-radius: 20px;
-    border: 2px solid purple;
+    border: 2px solid grey;
     
 }
 
 .resultScreen{
     width: 478px;
     height: 175px;
-    border-bottom: 2px solid purple;
+    border-bottom: 2px solid black;
 
 }
 
@@ -70,7 +65,7 @@ h1{
     
 }
 
-.numbers{
+.numbersContainer button{
     width: 90px;
     height: 90px;
     border-radius: 50px;
@@ -79,8 +74,24 @@ h1{
     color: white;
     background-color: #3c3c3c;
     cursor: pointer;
-    font-family: system-ui;
+    
+
 }
+
+.operatorsContainer button{
+    width: 90px;
+    height: 90px;
+    border-radius: 50px;
+    border:none;
+    font-size: 35px;
+    color: white;
+    background-color: #ffba47;
+    cursor: pointer;
+    
+}
+
+
+
 
 .operator{
     width: 90px;
