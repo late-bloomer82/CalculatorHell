@@ -22,11 +22,3 @@ function operate(firstNumber,secondNumber,operator){
     add(firstNumber,secondNumber)
 }
 
-const buttonsDiv = document.querySelector('.buttonsContainer')
-const numbersDiv = document.querySelector('.numbersContainer')
-
-for(i=0;i<10;i++){
-    let button = document.createElement('button')
-    button.className = "button"
-    numbersDiv.appendChild(button)
-}
