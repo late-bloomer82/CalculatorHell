@@ -19,6 +19,25 @@ let operator;
 let secondNumber;
 
 function operate(firstNumber,secondNumber,operator){
-    add(firstNumber,secondNumber)
+    
 }
+
+let operands = []
+
+const displayScreen = document.querySelector(".displayScreen")
+const numberbuttons = document.querySelectorAll(".numbersContainer button")
+
+numberbuttons.forEach(button =>{
+   
+    button.addEventListener('click', ()=>{
+        if(button.textContent === "AC" || button.textContent === "=" ){
+            return;
+        }
+        const number = button.textContent;
+        displayScreen.textContent += number
+
+        
+
+    })
+})
 

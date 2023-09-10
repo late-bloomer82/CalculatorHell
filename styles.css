@@ -26,10 +26,12 @@ h1{
     
 }
 
-.resultScreen{
+.displayScreen{
     width: 478px;
     height: 175px;
     border-bottom: 2px solid black;
+    color: white;
+    font-size: 30px;
 
 }
 
@@ -91,15 +93,3 @@ h1{
 }
 
 
-
-
-.operator{
-    width: 90px;
-    height: 90px;
-    border-radius: 50px;
-    border:none;
-    font-size: 35px;
-    color: white;
-    background-color: #ffad47;
-    cursor: pointer;
-}
