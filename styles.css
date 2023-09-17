@@ -3,6 +3,7 @@ body{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    background-color: #3c3c3c;
    
   
 }
@@ -10,7 +11,7 @@ body{
 
 h1{
     margin-bottom: 50px;
-    color:black;
+    color:white;
     font-size: 50px;
     font-family: Arial, sans-serif;
 }
@@ -27,11 +28,15 @@ h1{
 }
 
 .displayScreen{
+    display: flex;
     width: 478px;
     height: 175px;
-    border-bottom: 2px solid black;
+   
     color: white;
-    font-size: 30px;
+    font-size: 60px;
+    justify-content: flex-start;
+    padding-left: 10px;
+
 
 }
 
@@ -91,5 +96,6 @@ h1{
     cursor: pointer;
     
 }
+
 
 

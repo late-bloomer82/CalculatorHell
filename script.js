@@ -1,111 +1,118 @@
 
-//Select necessary elements from the html document.
-const displayScreen = document.querySelector(".displayScreen")
-const numberbuttons = document.querySelectorAll(".numbersContainer button")
-const clearButton = document.getElementById("clear")
-const equalsButton = document.getElementById("equals")
-const operators = document.querySelectorAll(".operatorsContainer button")
 
+// Select necessary elements from the HTML document
+const displayScreen = document.querySelector(".displayScreen");
+const numberbuttons = document.querySelectorAll(".numbersContainer button");
+const clearButton = document.getElementById("clear");
+const equalsButton = document.getElementById("equals");
+const operators = document.querySelectorAll(".operatorsContainer button");
 
+// Variables to store the first number, operator, and second number
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
 
-//Iterate through each digit button to create a dynamic calculator screen
-numberbuttons.forEach(button =>{
-   
-    button.addEventListener('click', ()=>{
-        if(button.textContent === "AC" || button.textContent === "=" ){
-            return;
-        }
-        const number = button.textContent;
-        displayScreen.textContent += number
-
-        
-
-    })
-})
-
-
-
-
-
-//Iterate through each operator button to create a dynamic calculator screen
-operators.forEach(button =>{
-    button.addEventListener("click", ()=>{
-          let buttonContent = button.textContent
-          displayScreen.textContent+=buttonContent
-    })
-})
-
-clearButton.addEventListener('click',()=>{
-
-    displayScreen.textContent= "";
-})
-
-
-
-//Math functions
-function add(number1, number2){
-  return number1+number2;
+// Function that clears the content of the screen
+function clearDisplayScreen() {
+  displayScreen.textContent = "";
 }
 
-function substract(number1, number2){
-  return number1-number2;
+// Math functions
+function add(number1, number2) {
+  return number1 + number2;
 }
 
-function multiply(number1, number2){
-  return number1*number2;
+function substract(number1, number2) {
+  return number1 - number2;
 }
 
-function divide(number1, number2){
-  return number1/number2;
+function multiply(number1, number2) {
+  return number1 * number2;
+}
+
+function divide(number1, number2) {
+  return number1 / number2;
 }
 
 
+function calculate() {
+  const num1 = parseFloat(firstNumber);
+  const num2 = parseFloat(secondNumber);
+  let result;
 
+  switch (operator) {
+    case "+":
+      result = add(num1, num2);
+      break;
+    case "-":
+      result = substract(num1, num2);
+      break;
+    case "x":
+      result = multiply(num1, num2);
+      break;
+    case "÷":
+      if (num2 !== 0) {
+        result = divide(num1, num2);
+        //Round large decimal numbers
+        result = result.toFixed(10);
+      } else {
+        result = "Error";
+      }
+      break;
+    default:
+      result = "Error";
+  }
 
+  // Display the result on the calculator's display screen
+  displayScreen.textContent = result;
 
+  // Reset firstNumber, operator, and secondNumber for the next operation
+  firstNumber = result.toString();
+  operator = "";
+  secondNumber = "";
+}
 
-//Creating all the logic that performs the mathematical operations
-equalsButton.addEventListener("click", ()=>{
-   
-  // Get the current content of the display screen
-  const expression = displayScreen.textContent;
-
-  // Use regular expressions to split the expression into operands and operator
-  const [operand1, operator, operand2] = expression.split(/([+\-x÷])/);
-
-  // Check if you have valid operands and an operator
-  if (operand1 && operator && operand2) {
-    // Parse operands to numerical values
-    const num1 = parseFloat(operand1);
-    const num2 = parseFloat(operand2);
-    
-
-    // Perform the calculation based on the operator
-    let result;
-    switch (operator) {
-      case '+':
-        result = add(num1,num2)
-        break;
-      case '-':
-        result = substract(num1,num2)
-      case 'x':
-        result = multiply(num1,num2)
-        break;
-      case '÷':
-        if (num2 !== 0) {
-          result = divide(num1,num2)
-        } else {
-          // Handle division by zero error
-          result = 'Error';
-        }
-        break;
-      default:
-        // Handle invalid operator
-        result = 'Error';
+// Iterate through each digit button to create a dynamic calculator screen
+numberbuttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.textContent === "AC" || button.textContent === "=") {
+      return;
     }
+    if (!operator) {
+      // If no operator has been set, append to the first number
+      firstNumber += button.textContent;
+    } else {
+      // If an operator is set, append to the second number
+      secondNumber += button.textContent;
+    }
+    displayScreen.textContent += button.textContent;
+  });
+});
 
-    // Display the result on the calculators display screen
-    displayScreen.textContent = result;
+// Iterate through each operator button to create a dynamic calculator screen
+operators.forEach((button) => {
+  button.addEventListener("click", () => {
+    if (firstNumber && secondNumber) {
+     
+      calculate();
+    }
+    operator = button.textContent;
+    displayScreen.textContent += operator;
+  });
+});
+
+
+clearButton.addEventListener("click", () => {
+  clearDisplayScreen();
+  firstNumber = "";
+  operator = "";
+  secondNumber = "";
+
+});
+
+
+equalsButton.addEventListener("click", () => {
+  if (firstNumber && operator && secondNumber) {
+    calculate();
   }
 });
- 
